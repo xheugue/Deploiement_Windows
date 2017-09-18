@@ -40,6 +40,8 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 
 (si différent de ce qui est déjà écrit)
 
+
+
 # A quoi ressemble un cahier des charges
 
 (Pour mettre tout le monde au même niveau de connaissances)
@@ -48,8 +50,18 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 
 # A quoi ressemble un cahier technique
 
+(Pour mettre tout le monde au même niveau de connaissances)
+
 
 
 # Proposition de découpe 
 
 (chacun dit ce qu'il sait/veut faire)
+
+
+
+# Liens utiles
+
+(Liens que vous pensez être intéressants pour notre travail)
+
+
