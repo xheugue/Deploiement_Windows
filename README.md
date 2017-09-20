@@ -44,7 +44,8 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 
 # A quoi ressemble un cahier des charges
 
-(Pour mettre tout le monde au même niveau de connaissances)
+Le cahier des charges est une formalisation des besoins et de l'expliquer à chacun des acteurs.
+Elle permet également de fixer une tâche à chaque acteur, dont le directeur de projet et le chef de projet, pour le bon déroulement du projet.
 
 
 
@@ -53,15 +54,16 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 (Pour mettre tout le monde au même niveau de connaissances)
 
 
-
 # Proposition de découpe 
 
-(chacun dit ce qu'il sait/veut faire)
-
-
+-Partie interface
+-Partie client réseau
+-Partie serveur en réseau
+-Partie système
+(Liste améliorable et non exhaustive)
 
 # Liens utiles
 
-(Liens que vous pensez être intéressants pour notre travail)
-
-
+Compostion de la base des registres (avec l'ancre qui va bien) : https://fr.wikipedia.org/wiki/Base_de_registre#Le_contenu_de_la_base_de_registre
+Panoplie de document sur les systèmes distribués : https://lmdinfoacad.jimdo.com/algorithme-et-systeme-distribu%C3%A9e/
+Base de modules pré-codés en PERL : https://www.cpan.org/
