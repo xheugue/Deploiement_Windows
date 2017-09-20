@@ -36,34 +36,97 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 
 
 
-# Résumé du projet 
+# Section 1 : Résumé du projet 
 
 (si différent de ce qui est déjà écrit)
 
+XAVIER {
+
+}
+
+NOUREDINE {
+
+}
+
+HICHAM {
+
+}
 
 
-# A quoi ressemble un cahier des charges
 
-Le cahier des charges est une formalisation des besoins et de l'expliquer à chacun des acteurs.
-Elle permet également de fixer une tâche à chaque acteur, dont le directeur de projet et le chef de projet, pour le bon déroulement du projet.
-
-
-
-# A quoi ressemble un cahier technique
+# Section 2 : A quoi ressemble un cahier des charges
 
 (Pour mettre tout le monde au même niveau de connaissances)
 
+XAVIER {
+    Le cahier des charges est une formalisation des besoins et de l'expliquer à chacun des acteurs.
+    Elle permet également de fixer une tâche à chaque acteur, dont le directeur de projet et le chef de projet, pour le bon déroulement du projet.
+}
 
-# Proposition de découpe 
+NOUREDINE {
 
--Partie interface
--Partie client réseau
--Partie serveur en réseau
--Partie système
-(Liste améliorable et non exhaustive)
+}
 
-# Liens utiles
+HICHAM {
 
-Compostion de la base des registres (avec l'ancre qui va bien) : https://fr.wikipedia.org/wiki/Base_de_registre#Le_contenu_de_la_base_de_registre
-Panoplie de document sur les systèmes distribués : https://lmdinfoacad.jimdo.com/algorithme-et-systeme-distribu%C3%A9e/
-Base de modules pré-codés en PERL : https://www.cpan.org/
+}
+
+
+
+# Section 3 : A quoi ressemble un cahier technique
+
+(Pour mettre tout le monde au même niveau de connaissances)
+
+XAVIER {
+
+}
+
+NOUREDINE {
+
+}
+
+HICHAM {
+
+}
+
+
+
+# Section 4 : Proposition de découpe 
+
+(Chacun met ce qu'il sait/veut faire)
+
+XAVIER {
+    -Partie interface
+    -Partie client réseau
+    -Partie serveur en réseau
+    -Partie système
+    (Liste améliorable et non exhaustive)
+}
+
+NOUREDINE {
+
+}
+
+HICHAM {
+
+}
+
+
+
+# Section 5 : Liens utiles
+
+(Lorsque vous faites les recherches, si vous tombez sur des liens intéressants partagez-les ici)
+
+Xavier {
+    Compostion de la base des registres (avec l'ancre qui va bien) : https://fr.wikipedia.org/wiki/Base_de_registre#Le_contenu_de_la_base_de_registre
+    Panoplie de document sur les systèmes distribués : https://lmdinfoacad.jimdo.com/algorithme-et-systeme-distribu%C3%A9e/
+    Base de modules pré-codés en PERL : https://www.cpan.org/
+}
+
+NOUREDINE {
+
+}
+
+HICHAM {
+
+}
