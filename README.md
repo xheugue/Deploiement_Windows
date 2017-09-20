@@ -32,7 +32,7 @@ Et ceci dans un délai de 15 jours à compter du 18-sep-2017
 
 # Pour commencer
 
-Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuite en complétant les sections suivantes du README.md.   
+Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuite en complétant les sections 1-2-3-4-5 du README.md.   
 
 
 
@@ -40,17 +40,13 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 
 (si différent de ce qui est déjà écrit)
 
-XAVIER {
+XAVIER :
 
-}
 
-NOUREDINE {
+NOUREDINE :
 
-}
 
-HICHAM {
-
-}
+HICHAM :
 
 
 
@@ -58,18 +54,17 @@ HICHAM {
 
 (Pour mettre tout le monde au même niveau de connaissances)
 
-XAVIER {
-    Le cahier des charges est une formalisation des besoins et de l'expliquer à chacun des acteurs.
-    Elle permet également de fixer une tâche à chaque acteur, dont le directeur de projet et le chef de projet, pour le bon déroulement du projet.
-}
+XAVIER :
 
-NOUREDINE {
+Le cahier des charges est une formalisation des besoins et de l'expliquer à chacun des acteurs.
 
-}
+Elle permet également de fixer une tâche à chaque acteur, dont le directeur de projet et le chef de projet, pour le bon déroulement du projet.
 
-HICHAM {
 
-}
+NOUREDINE :
+
+
+HICHAM :
 
 
 
@@ -77,17 +72,13 @@ HICHAM {
 
 (Pour mettre tout le monde au même niveau de connaissances)
 
-XAVIER {
+XAVIER :
 
-}
 
-NOUREDINE {
+NOUREDINE :
 
-}
 
-HICHAM {
-
-}
+HICHAM :
 
 
 
@@ -95,21 +86,19 @@ HICHAM {
 
 (Chacun met ce qu'il sait/veut faire)
 
-XAVIER {
-    -Partie interface
-    -Partie client réseau
-    -Partie serveur en réseau
-    -Partie système
-    (Liste améliorable et non exhaustive)
-}
+XAVIER :
 
-NOUREDINE {
+-Partie interface
+-Partie client réseau
+-Partie serveur en réseau
+-Partie système
+(Liste améliorable et non exhaustive)
 
-}
 
-HICHAM {
+NOUREDINE :
 
-}
+
+HICHAM :
 
 
 
@@ -117,16 +106,17 @@ HICHAM {
 
 (Lorsque vous faites les recherches, si vous tombez sur des liens intéressants partagez-les ici)
 
-Xavier {
-    Compostion de la base des registres (avec l'ancre qui va bien) : https://fr.wikipedia.org/wiki/Base_de_registre#Le_contenu_de_la_base_de_registre
-    Panoplie de document sur les systèmes distribués : https://lmdinfoacad.jimdo.com/algorithme-et-systeme-distribu%C3%A9e/
-    Base de modules pré-codés en PERL : https://www.cpan.org/
-}
+Xavier :
 
-NOUREDINE {
+Compostion de la base des registres (avec l'ancre qui va bien) : https://fr.wikipedia.org/wiki/Base_de_registre#Le_contenu_de_la_base_de_registre
 
-}
+Panoplie de document sur les systèmes distribués : https://lmdinfoacad.jimdo.com/algorithme-et-systeme-distribu%C3%A9e/
 
-HICHAM {
+Base de modules pré-codés en PERL : https://www.cpan.org/
 
-}
+
+NOUREDINE :
+
+
+HICHAM :
+
