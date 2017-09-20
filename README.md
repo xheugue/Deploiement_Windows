@@ -88,10 +88,11 @@ HICHAM :
 
 XAVIER :
 
--Partie interface
--Partie client réseau
--Partie serveur en réseau
--Partie système
+- Partie interface
+- Partie client réseau
+- Partie serveur en réseau
+- Partie système
+
 (Liste améliorable et non exhaustive)
 
 
