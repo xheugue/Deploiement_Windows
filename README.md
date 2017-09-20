@@ -107,7 +107,7 @@ HICHAM :
 
 (Lorsque vous faites les recherches, si vous tombez sur des liens intéressants partagez-les ici)
 
-Xavier :
+XAVIER :
 
 Compostion de la base des registres (avec l'ancre qui va bien) : https://fr.wikipedia.org/wiki/Base_de_registre#Le_contenu_de_la_base_de_registre
 
