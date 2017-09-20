@@ -40,13 +40,13 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 
 (si différent de ce qui est déjà écrit)
 
-XAVIER :
+**XAVIER** :
 
 
-NOUREDINE :
+**NOUREDINE** :
 
 
-HICHAM :
+**HICHAM** :
 
 
 
@@ -54,17 +54,17 @@ HICHAM :
 
 (Pour mettre tout le monde au même niveau de connaissances)
 
-XAVIER :
+**XAVIER** :
 
 Le cahier des charges est une formalisation des besoins et de l'expliquer à chacun des acteurs.
 
 Elle permet également de fixer une tâche à chaque acteur, dont le directeur de projet et le chef de projet, pour le bon déroulement du projet.
 
 
-NOUREDINE :
+**NOUREDINE** :
 
 
-HICHAM :
+**HICHAM** :
 
 
 
@@ -72,13 +72,13 @@ HICHAM :
 
 (Pour mettre tout le monde au même niveau de connaissances)
 
-XAVIER :
+**XAVIER** :
 
 
-NOUREDINE :
+**NOUREDINE** :
 
 
-HICHAM :
+**HICHAM** :
 
 
 
@@ -86,7 +86,7 @@ HICHAM :
 
 (Chacun met ce qu'il sait/veut faire)
 
-XAVIER :
+**XAVIER** :
 
 - Partie interface
 - Partie client réseau
@@ -96,10 +96,10 @@ XAVIER :
 (Liste améliorable et non exhaustive)
 
 
-NOUREDINE :
+**NOUREDINE** :
 
 
-HICHAM :
+**HICHAM** :
 
 
 
@@ -107,7 +107,7 @@ HICHAM :
 
 (Lorsque vous faites les recherches, si vous tombez sur des liens intéressants partagez-les ici)
 
-XAVIER :
+**XAVIER** :
 
 Compostion de la base des registres (avec l'ancre qui va bien) : https://fr.wikipedia.org/wiki/Base_de_registre#Le_contenu_de_la_base_de_registre
 
@@ -116,8 +116,8 @@ Panoplie de document sur les systèmes distribués : https://lmdinfoacad.jimdo.c
 Base de modules pré-codés en PERL : https://www.cpan.org/
 
 
-NOUREDINE :
+**NOUREDINE** :
 
 
-HICHAM :
+**HICHAM** :
 
