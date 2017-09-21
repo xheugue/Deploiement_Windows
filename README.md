@@ -46,7 +46,7 @@ Chacun des membres du groupe devrait faire un FORK du projet, et procède ensuit
 **NOUREDINE** :
 
 
-**HICHAM** :
+**HICHEM** :
 
 
 
@@ -64,7 +64,7 @@ Elle permet également de fixer une tâche à chaque acteur, dont le directeur d
 **NOUREDINE** :
 
 
-**HICHAM** :
+**HICHEM** :
 
 
 
@@ -78,7 +78,7 @@ Elle permet également de fixer une tâche à chaque acteur, dont le directeur d
 **NOUREDINE** :
 
 
-**HICHAM** :
+**HICHEM** :
 
 
 
@@ -99,7 +99,7 @@ Elle permet également de fixer une tâche à chaque acteur, dont le directeur d
 **NOUREDINE** :
 
 
-**HICHAM** :
+**HICHEM** :
 
 
 
@@ -119,5 +119,5 @@ Base de modules pré-codés en PERL : https://www.cpan.org/
 **NOUREDINE** :
 
 
-**HICHAM** :
+**HICHEM** :
 
