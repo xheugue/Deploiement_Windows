@@ -28,7 +28,7 @@ Pour un premier temps, nous sommes sensés délivrer :
 
 Et ceci dans un délai de 15 jours à compter du 18-sep-2017
 
-
+**IMPORTANT : Pour ce faire, et dans le but d'élaborer de bons documents, nous allos prendre comme référence une source sûre, qui est mise en place par AFNOR (Association Française de NORmalisation). Nous suivrons la norme Afnor x50-151 qui définit le cahier des charges.** 
 
 # Pour commencer
 
