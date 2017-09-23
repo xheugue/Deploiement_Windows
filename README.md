@@ -74,6 +74,10 @@ Elle permet également de fixer une tâche à chaque acteur, dont le directeur d
 
 **XAVIER** :
 
+Le cahier technique, aussi appelé communément "cahier des clauses
+techniques" ou "cahier des charges détaillées", se concentre plus sur
+l'aspect technique du logiciel, c'est-à-dire, sur le fonctionnement de
+chaque unité du logiciel.
 
 **NOUREDINE** :
 
