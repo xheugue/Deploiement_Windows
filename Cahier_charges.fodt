@@ -549,9 +549,9 @@
    <text:p text:style-name="P12">Le produit doit permettre un gain de temps, c’est-à-dire, réduire le nombre d’opérations effectuées par l’administrateur. De plus, ces opérations doivent pouvoir être effectuées de n’importe quel endroit de la structure, via une interface Web.</text:p>
    <text:h text:style-name="P6" text:outline-level="3"><text:bookmark-start text:name="__RefHeading___Toc135_2347487492"/>2.1.2. Contraintes<text:bookmark-end text:name="__RefHeading___Toc135_2347487492"/></text:h>
    <text:p text:style-name="P12">Le client impose l’usage du langage PERL pour la réalisation du projet.</text:p>
-   <text:p text:style-name="P14">- Ne pas donner l’accès à n’importe quel utilisateur, l’accès à l’interface web doit êtres contrôlé, ne donner l’accès à cette interface qu’aux utilisateurs qui ont le privilège par le moyen d’authentification.</text:p>
+   <text:p text:style-name="P12">- Ne pas donner l’accès à n’importe quel utilisateur, l’accès à l’interface web doit êtres contrôlé, ne donner l’accès à cette interface qu’aux utilisateurs qui ont le privilège par le moyen d’authentification.</text:p>
    <text:h text:style-name="P15" text:outline-level="2"><text:bookmark-start text:name="__RefHeading___Toc137_2347487492"/>2.2. Critères d’appréciations<text:bookmark-end text:name="__RefHeading___Toc137_2347487492"/></text:h>
-   <text:p text:style-name="P15">- Contrôle d’accès.</text:p>
+   <text:p text:style-name="P12">- Contrôle d’accès.</text:p>
    <text:p text:style-name="P13"/>
    <text:h text:style-name="Heading_20_1" text:outline-level="1"/>
   </office:text>
