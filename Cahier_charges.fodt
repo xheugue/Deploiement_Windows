@@ -412,7 +412,7 @@
    <text:p text:style-name="Standard"/>
    <text:p text:style-name="Standard"/>
    <text:p text:style-name="P4">Cahier des charges</text:p>
-   <text:p text:style-name="P4">Installation/désinstallation décentralisé sur Windows</text:p>
+   <text:p text:style-name="P4">Automatisation et décentralisation de l'installation/désinstallation de logiciels dans un parc informatique</text:p>
    <text:table-of-content text:style-name="Sect1" text:protected="true" text:name="Table des matières1">
     <text:table-of-content-source text:outline-level="10">
      <text:index-title-template text:style-name="Contents_20_Heading">Table des matières</text:index-title-template>
