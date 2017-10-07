@@ -1,0 +1,94 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}   
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,latexsym,amsfonts}
+\usepackage{color}
+\usepackage{eurosym}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\lhead{Cahier des charges Technique}
+\rhead{Parc informatique}
+\hypersetup{
+    linkcolor= blue,               % parametrage des hyperliens
+    colorlinks=true,                % colorise les liens
+    breaklinks=true,                
+    urlcolor= blue,                 % couleur des hyperliens
+                    % couleur des liens internes aux documents (index, 
+                   % couleur des liens vers les references b
+    pdftitle={TER}, %informations apparaissant dans
+    pdfauthor={HAMRI Nouredine},     %dans les informations du document
+    pdfsubject={Mac OS X}          %sous Acrobat.
+}
+
+
+\title{\begin{center}\hspace{1.5cm}Cahier Des Charges Du Projet : \newline
+              \newline
+               \newline
+ \textbf{ Automatisation et décentralisation de l'installation/désinstallation de logiciels dans un parc informatique} 
+  \end{center}}
+
+
+\begin{document}
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{Présentation du problème}
+\subsection{Objectifs, Contraintes et environnement}
+Le but du projet est de créer un programme pouvant répartir les installations et désinstallation d'un programme sur l'ensemble des machines composant un parc informatique (voir schéma ci-dessous).
+
+Ce parc informatique est composé de machines identiques sous le système d'exploitation Windows, et pour la réalisation de ce projet, le langage PERL nous est imposé.
+\begin{figure}[h!]
+    \center
+    \includegraphics[scale=0.4]{Diagrammes/png/CasUtilisationGeneral.png}
+    \caption{Cas d'utilisation de l'utilisation du logiciel d'administration}
+\end{figure}
+
+
+
+
+\section{Solution logicielle}
+\subsection{Modélisation des communications}
+Les différents types de communications ont été modélisés sur les schémas suivants :
+
+\begin{figure}[h!]
+    \center
+    \includegraphics[scale=0.2]{Diagrammes/png/Desinstallation.png}
+    \caption{Séquence désinstallation d'un programme}
+\end{figure}
+\begin{figure}[h!]
+    \center
+    \includegraphics[scale=0.2]{Diagrammes/png/Installation.png}
+    \caption{Séquence d'installation d'un programme}
+\end{figure}
+\begin{figure}[h!]
+    \center
+    \includegraphics[scale=0.2]{Diagrammes/png/NouvelleMachine.png}
+    \caption{Installation d'une nouvelle machine dans le parc}
+\end{figure}
+\newpage
+
+
+
+
+
+
+\subsection{Architecture du système}
+Pour la réalisation de ce logiciel, le modèle d'architecture qui sera utilisé sera adapté du modèle MIMD (Multiple Instructions Multiple Data). Au vu des communications réseau à effectuer, le modèle de gestion par message, semble être le plus adapté.
+\subsection{Modules utilisées}
+Pour ce projet, nous utiliserons les modules suivants :
+
+\begin{itemize}
+     \item Win32TieRegistry : Module disponible sur le site de la CPAN permettant d'effectuer les manipulations sur les clés de registre ; 
+     \item \textbf{Socket :} Module également disponible sur le site de la CPAN, il permet la mise en place de Socket pour l'interaction en réseau ;
+     \item DBD-SQLite : permettant d'établir des bases de données concernant les différents produits installés ;
+  \end{itemize}
+\end{document}
