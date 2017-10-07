@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}   
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,latexsym,amsfonts}
+\usepackage{color}
+\usepackage{eurosym}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\lhead{Cahier des charges fonctionnel}
+\rhead{Parc informatique}
+\hypersetup{
+    linkcolor= blue,               % parametrage des hyperliens
+    colorlinks=true,                % colorise les liens
+    breaklinks=true,                
+    urlcolor= blue,                 % couleur des hyperliens
+                    % couleur des liens internes aux documents (index, 
+                   % couleur des liens vers les references b
+    pdftitle={TER}, %informations apparaissant dans
+    pdfauthor={HAMRI Nouredine},     %dans les informations du document
+    pdfsubject={Mac OS X}          %sous Acrobat.
+}
+
+
+\title{\begin{center}\hspace{1.5cm}Cahier Des Charges Du Projet : \newline
+              \newline
+               \newline
+ \textbf{ Automatisation et décentralisation de l'installation/désinstallation de logiciels dans un parc informatique} 
+  \end{center}}
+
+
+\begin{document}
+\maketitle
+
+\newpage
+
+\tableofcontents
+ \newpage
+\section{Présentation générale du problème}
+
+\subsection{Projet}
+  \subsubsection{Finalités} 
+Le but de ce projet est de réaliser une application capable de gérer l'automatisation d'installation, de mise à jour et de désinstallation de divers logiciels dans un parc informatique. \\
+Toutes les machines au sein de ce parc sont dotées du système Windows et sont toutes identiques. De ce fait, le client souhaite agir sur une seule machine (quelconque, pas de machine de rôle maître) en installant dessus ses logiciels utilitaires, et notre application de son coté devrait faire le déploiement de cette tâche sur toutes les autres machines du parc. Ceci va ainsi épargner notre client de la répétition du même travail.   
+  
+\subsection{Contexte}
+  \subsubsection{Situation du projet}
+    Ce projet sera réalisé sur un parc où l'ensemble des machines seront sous le même système d'exploitation, ici Windows.
+  \subsubsection{Études déjà effectuées}
+
+  \subsubsection{Nature des prestations demandées}
+  Le client nous demande la création de ce logiciel afin de pouvoir faciliter l'administration du parc informatique, notamment l'installation/désinstallation de programme.
+  \subsubsection{Parties concernées par le déroulement du projet et ses résultats (demandeurs, utilisateurs)}
+  Le client, Monsieur Mazure, nous assurera que le projet répondra bien à ses attentes. Mohamed Boumati, s'occupera de la gestion du projet, et sera l'intermédiaire entre le client et l'équipe technique, composée de : Nouredine Hamri, Hichem Touahria et Xavier Heugue.
+\subsection{Énoncé du besoin}
+  Le client souhaite alléger la durée des opérations de maintenances, notamment la gestion des programmes, sur son parc informatique. Toute la configuration devra se faire à partir d'une interface Web.
+
+\subsection{Environnement du produit recherché}
+  \subsubsection{Liste exhaustive des éléments (personnes, équipements, matières...) et des contraintes (environnement)}
+  \begin{itemize}
+     \item Administrateur système et réseaux ;
+     \item Parc informatique ;
+  \end{itemize}
+
+  \subsubsection{Caractéristiques pour chaque élément de l'environnement}
+  \begin{itemize}
+     \item  Administrateur système et réseaux : Personne chargé de la maintenance du parc informatique et du réseau ;
+     \item Parc informatique : Ensemble de poste de travail, ayant un système d'exploitation identique (ici, Windows)
+  \end{itemize}
+
+\section{Expression fonctionnelle du besoin}
+\subsection{Fonctions de services et de contraintes}
+  \subsubsection{Fonctions de services (Les raisons d'être du produit)}
+  Le produit doit permettre un gain de temps, c’est-à-dire, réduire le nombre d'opérations effectuées par l'administrateur. De plus, ces opérations doivent pouvoir être effectuées de n'importe quel endroit de la structure, via une interface Web.
+  \subsubsection{Contraintes}     
+  \begin{itemize}
+     \item Les opérations de maintenance doivent être effectuées à partir de n'importe quelle machine du parc ;
+     \item Ne pas donner l'accès à n'importe quel utilisateur, l'accès à l'interface web doit être contrôlé, ne donner l'accès à cette interface qu'aux utilisateurs qui ont le privilège par le moyen d'authentification ;
+  \end{itemize}    
+\subsection{Critères d'appréciations}  
+
+  \begin{itemize}
+     \item Décentralisation du service ;
+     \item Contrôle d'accès ;
+  \end{itemize}
+
+\end{document}
