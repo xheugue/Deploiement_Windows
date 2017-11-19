@@ -56,7 +56,7 @@ sub new {
 
     bless($this, $class);
 
-    $this->{keys} = new Win32::TieRegistry("HKEY_LOCAL_MACHINE\\Software\\", { Access=>KEY_READ() });
+    $this->{keys} = new Win32::TieRegistry("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall", { Access=>KEY_READ() });
     return $this;
 }
 
@@ -95,14 +95,13 @@ sub _listSoftwareInSubkeys {
         }
         my @valueNames = $subkey->{keys}->ValueNames();
 
-        my @filteredAttribute = grep(m/^(dir.+|.*?Dir.*?|(Current)?Version)$/, @valueNames);
+        my @filteredAttribute = grep(m/DisplayName/, @valueNames);
 
-        if (@filteredAttribute != 0 && $keyName =~ m/^(\w|\s)+$/) {
-            unshift(@program, $keyName);
-        } elsif ($keyName !~ m/^(\w|\s)+$/) {
-            next;
+        if (@filteredAttribute == 1) {
+            my ($value, $type) = $subkey->{keys}->GetValue("DisplayName");
+            unshift(@program, $value);
         } else {
-            unshift(@program, $subkey->_listSoftwareInSubkeys());
+            next;
         }
     }
 
