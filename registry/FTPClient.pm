@@ -5,6 +5,19 @@ use warnings;
 use Cwd;
 use Net::FTP::Recursive;
 
+sub _WinPathToFTP {
+    my @args = @_;
+
+    die("Usage: $0 Object ") if (@args != 1);
+
+    my ($path) = @args;
+
+    $path =~ s/\\/\//g;
+    $path =~ s/C://;
+
+    return $path;
+}
+
 sub new {
     my @args = @_;
 
@@ -48,8 +61,7 @@ sub sendDir {
 
     chdir($dir);
 
-    my $dest = ($dir =~ s/\\/\//rg);
-    $dest =~ s/C://;
+    my $dest = _WinPathToFTP($dir);
     $this->{ftp}->mkdir($dest, 1);
     $this->{ftp}->cwd($dest);
     $this->{ftp}->rput();
@@ -65,8 +77,7 @@ sub rmdir {
 
     my ($this, $dir) = @args;
 
-    $dir =~ s/\\/\//g;
-    $dir =~ s/C://;
+    $dir = _WinPathToFTP($dir);
 
     $this->{ftp}->rmdir($dir, 1)
 }
