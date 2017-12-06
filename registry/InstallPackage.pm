@@ -1,6 +1,7 @@
 package InstallPackage;
 
-use Archive::Zip;
+use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+
 
 =pod
 
@@ -53,7 +54,7 @@ Returns a new B<InstallPackage> for a creation or dies on error.
 sub initialize {
 	my @args = @_;
 	
-	if (@_ != 4) {
+	if (@args != 4) {
 		die ("Usage: InstallPackage->initialize(pathToDirToPack, name, dest)");
 	}
 	
@@ -64,19 +65,21 @@ sub initialize {
 	
 	bless($this, $class);
 	
-		$this->{dir} = $dir;
+	
+	$this->{dir} = $dir;
 	$this->{name} = $name;
 	$this->{dest} = $dest;
 	
-		return $this;
+	
+	return $this;
 }
 
 =pod
 
 =head2 prepare
 
-  my $object = InstallPackage->initialize(
-      name => 'name of the package',
+  my $object = InstallPackage->prepare(
+      path => 'path to the package',
       dest => 'destination of the package'
   );
 
@@ -84,24 +87,26 @@ The C<prepare> constructor lets you create a new B<InstallPackage> object.
 
 Returns a new B<InstallPackage> for an installation or dies on error.
 
-=cutsub prepare {
+=cut
+sub prepare {
 	my @args = @_;
 	
-	if (@_ != 3) {
-		die ("Usage: InstallPackage->prepare(pathToPackage, installDestination)");
+	if (@args != 3) {
+		die ("Usage: InstallPackage->prepare(path, installDestination)");
 	}
 	
-	my ($class, $name, $dest) = @args;
+	my ($class, $path, $dest) = @args;
 	
 	$class = ref($class) || $class;
 	my $this = {};
 	
 	bless($this, $class);
 	
-	$this->{name} = $name;
+	$this->{path} = $path;
 	$this->{dest} = $dest;
 	
-	return $this;}
+	return $this;
+}
 
 =pod
 
@@ -117,7 +122,7 @@ sub createPackage {
     my @args = @_;
     
     if (@args != 1) {
-	die("Usage : \$object->installPackage");
+	    die("Usage : \$object->installPackage");
     }
     
     my ($this) = @args;
@@ -126,11 +131,11 @@ sub createPackage {
     	die("This package is already created");
     }
     
-    my $package = Archive::Zip->new($this->{name});
+    my $package = Archive::Zip->new();
+
+    $package->addTree($this->{dir});
     
-    $package->addDirectory($this->{dir});
-    
-    if ( $zip->writeToFileNamed('C:\\SoftwarePackage\\' . $this->{name}) != AZ_OK ) {
+    if ( $package->writeToFileNamed($this->{dest}) != AZ_OK ) {
     	die ("Impossible to save the package");
     }
     
@@ -144,7 +149,9 @@ sub createPackage {
 $object->installPackage()
 
 This method install the package to the specified destination, located in the database
-=cutsub installPackage {
+
+=cut
+sub installPackage {
     my @args = @_;
     
     if (@args != 1) {
@@ -153,13 +160,12 @@ This method install the package to the specified destination, located in the dat
     
     my ($this) = @args;
     
-        my $zip;
-    my $dest;
-    # Lecture grace a BDD
+    my $zip = Archive::Zip->new($this->{path});
+
+    $zip->extractTree(undef, $this->{dest});
     
-    $zip->extractToFileNamed($dest);
-    
-    return 1;}
+    return 1;
+}
 
 1;
 
