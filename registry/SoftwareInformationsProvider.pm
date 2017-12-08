@@ -251,14 +251,13 @@ sub generateRegFileContent {
             my $type;
 
             switch($typeValue) {
-                case REG_BINARY() {$type = "hexadecimal";}
+                case REG_BINARY() {$type = "hex";}
                 case REG_DWORD() {$type = "dword";}
-                case REG_EXPAND_SZ() {$type = "hexadecimal(2)";}
+                case REG_EXPAND_SZ() {$type = "None";}
                 case REG_SZ() {$type = "None";}
-                case REG_MULTI_SZ() {$type = "hexadecimal(7)";}
+                case REG_MULTI_SZ() {$type = "None";}
 
             }
-
 
             if ($type ne "None" ) {
                 $reg .= "\n\"$valueName\"=$type:$value"; 
