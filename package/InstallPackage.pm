@@ -10,15 +10,17 @@ use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 InstallPackage - Class to install some stuff on Windows machine
 
 =head1 SYNOPSIS
-
-  my $object = InstallPackage->new(
-      foo  => 'bar',
-      flag => 1,
-  );
   
-  $object->initialize(dir, name, dest);
+  my $object = InstallPackage::initialize(dir, name, dest);
+  my $object = InstallPackage::prepare(path, dest)
   $object->createPackage(name, dest);
   $object->installPackage();
+
+=head1 DEPENDENCIES
+
+=over packages
+=item Archive::Zip
+=back
 
 =head1 DESCRIPTION
 
