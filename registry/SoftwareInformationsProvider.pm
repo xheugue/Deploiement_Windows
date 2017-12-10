@@ -7,7 +7,7 @@ use Win32::TieRegistry qw(:KEY_ :REG_);
 use Data::Dumper;
 use Switch;
 
-=begin pod
+=pod
 
 =head1 Synopsis
 
@@ -27,29 +27,6 @@ Initialize the SoftwareInformationsProvider
 
 Parameters : None
 Return : An instance of SoftwareInformationsProvider
-
-=begin comment
-
-_listSoftwareInSubkeys permits to list softwares in a subkey
-Parameters: subkeyName, reference to the array to complete
-Return : none
-
-=end comment
-
-=head2 getSoftwareList()
-
-Provide an array reference to the list of installed software
-
-Parameters: None
-Return : An array which contains the list of installed software
-
-=head2 getSoftwareRelatedKeys()
-
-Provide an array of key path related to a software
-
-Parameters: displayName, the display name of the software
-Return: A key list related to the software
-
 =cut
 
 sub new {
@@ -85,6 +62,15 @@ sub _createFromKey {
     $this->{keys} = $key->Open($subkey, { Access=>KEY_ALL_ACCESS });;
     return $this;
 }
+=pod
+=begin comment
+
+_listSoftwareInSubkeys permits to list softwares in a subkey
+Parameters: subkeyName, reference to the array to complete
+Return : none
+
+=end comment
+=cut
 
 sub _listSoftwareInSubkeys {
     my @args = @_;
@@ -116,6 +102,15 @@ sub _listSoftwareInSubkeys {
 
     return @program;
 }
+
+=pod
+=head2 getSoftwareList()
+
+Provide an array reference to the list of installed software
+
+Parameters: None
+Return : An array which contains the list of installed software
+=cut
 
 sub getSoftwareList {
     my @args = @_;
@@ -203,6 +198,15 @@ sub _searchKeysWithKeyName {
     return @keys;
 }
 
+=pod
+=head2 getSoftwareRelatedKeys()
+
+Provide an array of key path related to a software
+
+Parameters: displayName, the display name of the software
+Return: A key list related to the software
+=cut
+
 sub getSoftwareRelatedKeys {
     my @args = @_;
 
@@ -223,6 +227,14 @@ sub getSoftwareRelatedKeys {
     return @list;
 }
 
+=pod
+=head2 generateRegFileContent
+
+$object->generateRegFileContent(keyList)
+
+Generate the reg file associate to the key present in the list
+
+=cut
 sub generateRegFileContent {
     my @args = @_;
 
@@ -251,14 +263,13 @@ sub generateRegFileContent {
             my $type;
 
             switch($typeValue) {
-                case REG_BINARY() {$type = "hexadecimal";}
+                case REG_BINARY() {$type = "hex";}
                 case REG_DWORD() {$type = "dword";}
-                case REG_EXPAND_SZ() {$type = "hexadecimal(2)";}
+                case REG_EXPAND_SZ() {$type = "None";}
                 case REG_SZ() {$type = "None";}
-                case REG_MULTI_SZ() {$type = "hexadecimal(7)";}
+                case REG_MULTI_SZ() {$type = "None";}
 
             }
-
 
             if ($type ne "None" ) {
                 $reg .= "\n\"$valueName\"=$type:$value"; 
