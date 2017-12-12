@@ -1,4 +1,4 @@
-package InstallPackage;
+package Package::InstallPackage;
 
 use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 
@@ -56,11 +56,11 @@ Returns a new B<InstallPackage> for a creation or dies on error.
 sub initialize {
 	my @args = @_;
 	
-	if (@args != 4) {
-		die ("Usage: InstallPackage->initialize(pathToDirToPack, name, dest)");
+	if (@args != 3) {
+		die ("Usage: InstallPackage->initialize(pathToDirToPack, dest)");
 	}
 	
-	my ($class, $dir, $name, $dest) = @args;
+	my ($class, $dir, $dest) = @args;
 	
 	$class = ref($class) || $class;
 	my $this = {};
@@ -69,7 +69,6 @@ sub initialize {
 	
 	
 	$this->{dir} = $dir;
-	$this->{name} = $name;
 	$this->{dest} = $dest;
 	
 	
@@ -124,7 +123,7 @@ sub createPackage {
     my @args = @_;
     
     if (@args != 1) {
-	    die("Usage : \$object->installPackage");
+	    die("Usage : \$object->createPackage");
     }
     
     my ($this) = @args;

@@ -1,4 +1,4 @@
-package SoftwareInformationsProvider;
+package Registry::SoftwareInformationsProvider;
 
 use strict;
 use warnings;
@@ -23,10 +23,10 @@ use Switch;
 
 =head2 new
 
-Initialize the SoftwareInformationsProvider
+Initialize the Registry::SoftwareInformationsProvider
 
 Parameters : None
-Return : An instance of SoftwareInformationsProvider
+Return : An instance of Registry::SoftwareInformationsProvider
 =cut
 
 sub new {
@@ -46,10 +46,10 @@ sub new {
     return $this;
 }
 
-sub _createFromKey {
+sub createFromKey {
     my @args = @_;
 
-    die ("Not enough parameters For SoftwareInformationsProvider initialization") if (@args != 3);
+    die ("Not enough parameters For Registry::SoftwareInformationsProvider initialization") if (@args != 3);
 
     my ($class, $key, $subkey) = @args;
 
@@ -83,7 +83,7 @@ sub _listSoftwareInSubkeys {
     my @program;
 
     foreach my $keyName (@subkeyNames) {
-        my $subkey = _createFromKey SoftwareInformationsProvider($this->{keys}, $keyName);
+        my $subkey = createFromKey Registry::SoftwareInformationsProvider($this->{keys}, $keyName);
 
         if (! defined($subkey->{keys})) {
             next;
@@ -119,13 +119,13 @@ sub getSoftwareList {
 
     my ($this) = @args;
 
-    my $subkey = _createFromKey SoftwareInformationsProvider($this->{keys}, "Microsoft\\Windows\\CurrentVersion\\Uninstall");
+    my $subkey = createFromKey Registry::SoftwareInformationsProvider($this->{keys}, "Microsoft\\Windows\\CurrentVersion\\Uninstall");
     my @programs = $subkey->_listSoftwareInSubkeys();
     my $program = \@programs;
     return $program;
 }
 
-sub _getKeyPathByDisplayName {
+sub getKeyPathByDisplayName {
     my @args = @_;
 
     die ("Not enough parameters to get the software list") if (@args != 2);
@@ -136,7 +136,7 @@ sub _getKeyPathByDisplayName {
     my @program;
 
     foreach my $keyName (@subkeyNames) {
-        my $subkey = _createFromKey SoftwareInformationsProvider($this->{keys}, $keyName);
+        my $subkey = createFromKey Registry::SoftwareInformationsProvider($this->{keys}, $keyName);
 
         if (! defined($subkey->{keys})) {
             next;
@@ -175,7 +175,7 @@ sub _searchKeysWithKeyName {
             push(@keys, $this->{keys}->Path . $subkeyName);
         }
 
-        my $subkey = _createFromKey SoftwareInformationsProvider($this->{keys}, $subkeyName);
+        my $subkey = createFromKey Registry::SoftwareInformationsProvider($this->{keys}, $subkeyName);
 
         if (! defined($subkey->{keys})) {
             next;
@@ -214,9 +214,9 @@ sub getSoftwareRelatedKeys {
 
     my ($this, $displayname) = @args;
 
-    my $uninstaller = _createFromKey SoftwareInformationsProvider($this->{keys}, "Microsoft\\Windows\\CurrentVersion\\Uninstall");
+    my $uninstaller = createFromKey Registry::SoftwareInformationsProvider($this->{keys}, "Microsoft\\Windows\\CurrentVersion\\Uninstall");
 
-    my $keyPath = $uninstaller->_getKeyPathByDisplayName($displayname);
+    my $keyPath = $uninstaller->getKeyPathByDisplayName($displayname);
 
     my ($keyName) = $keyPath =~ m/[^\\]+?\\$/g;
 
@@ -249,7 +249,7 @@ sub generateRegFileContent {
     my @copyList = @$list;
 
     foreach my $keyPath (@copyList) {
-        my $key =  _createFromKey SoftwareInformationsProvider($this->{keys}, $keyPath);
+        my $key =  createFromKey Registry::SoftwareInformationsProvider($this->{keys}, $keyPath);
 
         if (! defined($key->{keys})) {
             next;

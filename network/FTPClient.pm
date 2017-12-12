@@ -1,4 +1,4 @@
-package FTPClient;
+package Network::FTPClient;
 
 use strict;
 use warnings;
@@ -51,7 +51,7 @@ sub DESTROY {
 sub sendDir {
     my @args = @_;
 
-    die("Usage: $0 Object ") if (@args != 2);
+    die("Usage: $0 Object directory") if (@args != 2);
 
     my ($this, $dir) = @args;
 
@@ -61,6 +61,7 @@ sub sendDir {
 
     chdir($dir);
 
+    $this->{ftp}->binary();
     my $dest = _WinPathToFTP($dir);
     $this->{ftp}->mkdir($dest, 1);
     $this->{ftp}->cwd($dest);
@@ -68,6 +69,21 @@ sub sendDir {
     $this->{ftp}->cwd();
 
     chdir($old);
+}
+
+sub sendFile {
+    my @args = @_;
+    
+    die("Usage: $0 Object file") if (@args != 2);
+
+    my ($this, $file) = @args;
+    
+    die ("The file $file doesn't exist or is not a file") if (! -f $file);
+
+    $this->{ftp}->binary();
+    my $dest = _WinPathToFTP($file);
+    $this->{ftp}->put($dest, $dest);
+    $this->{ftp}->cwd();
 }
 
 sub rmdir {

@@ -1,4 +1,4 @@
-package RegistryMonitoring;
+package Registry::RegistryMonitoring;
 
 use strict;
 use warnings;
@@ -130,12 +130,15 @@ sub diffWithSnapshot {
     $process->Wait(INFINITE);
     
     @arguments = ();
+    my $newPath = ($regPath =~ s/\.reg//r);
     
-    unshift(@arguments, "regdiff.exe", $regPath, "$regPath.new", "/diff", "$regPath.update");
+    unshift(@arguments, "regdiff.exe", $regPath, "$regPath.new", "/diff", "$newPath.update.reg");
     Win32::Process::Create($process, "C:\\regdiff-4.3\\regdiff.exe", join(" ", @arguments), 0, NORMAL_PRIORITY_CLASS, ".");
     
     $process->Wait(INFINITE);
     unlink("$regPath.new");
+    
+    return "$newPath.update.reg";
 }
 
 1;
