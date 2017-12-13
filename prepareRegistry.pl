@@ -60,16 +60,13 @@ sub createAndSendPackage {
     my $regKeyPath = $sipForProgram->getKeyPathByDisplayName($name);
     my $registry = new Win32::TieRegistry($regKeyPath);
     
-    if (defined($registry->GetValue("WindowsInstaller"))) {
-        print("MSI program processing\n");
-    } else {
         # TODO: UDP Broadcast
         
         my $installLocation = $registry->GetValue("InstallLocation");
         die("Impossible d'installer le programme de cette maniere") if (! defined($installLocation));
         my $installSource = $registry->GetValue("InstallSource");
         
-        ($installLocation =~ m@\\((\w|\s)+)\\$@);
+        ($installLocation =~ m@\\([^\\]+)\\$@);
         
         my $folder = $1;
         
@@ -126,8 +123,6 @@ sub createAndSendPackage {
             my $resp = $client->send_request("installPackage", "C:\\software_package\\$folder.zip", $installLocation);
             print "Error: $resp";
         }
-
-    }
 }
 
 sub installPackage {
