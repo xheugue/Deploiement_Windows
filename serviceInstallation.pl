@@ -4,6 +4,9 @@ use 5.010;
 use strict;
 use warnings;
 
+use Network::FTPClient;
+use Network::Discovering;
+
 use RPC::XML::Server;
 use RPC::XML::Procedure;
 use RPC::XML::Client;
@@ -11,8 +14,6 @@ use RPC::XML::Client;
 use Registry::RegistryMonitoring;
 use Registry::RegistryInstaller;
 use Registry::SoftwareInformationsProvider;
-
-use Network::FTPClient;
 
 use Package::InstallPackage;
 
@@ -111,14 +112,16 @@ sub createAndSendPackage {
             }
         }
  
+        my $discover = Network::Discovering->new("8000");
+        my @ip = $discover->discoverNetwork("Are you a software installer?", "Yes i'm a software installer", "8001");
 
-        {
+        for my $cli (@ip) {
             lock($ftp);
-            my $ftpClient = new Network::FTPClient("192.168.0.3", "admin", "password");
-            $ftpClient->sendFile($installSource) if (defined($installSource));
+            my $ftpClient = new Network::FTPClient("$cli", "admin", "password");
+            $ftpClient->sendDir($installSource) if (defined($installSource));
             $ftpClient->sendFile("C:\\software_package\\$folder.zip");
         
-            my $client = RPC::XML::Client->new("http://192.168.0.3:9000");
+            my $client = RPC::XML::Client->new("http://$cli:9000");
 
             my $resp = $client->send_request("installPackage", "C:\\software_package\\$folder.zip", $installLocation);
             print "Error: $resp";
@@ -175,12 +178,13 @@ sub _createAndSendPackage {
     my $thr1 = threads->create(\&createAndSendPackage, $arg);
 }
 
+my $udpServer = Network::Discovering->new("8000");
+my $serverThr = threads->create(sub { $udpServer->serverLoop("Are you a software installer?", "Yes i'm a software installer"); });
 my $server = RPC::XML::Server->new(port => 9000);
 my $fctInstall = RPC::XML::Function->new(name => "installPackage", code => \&_installPackage);
 my $fctPackage = RPC::XML::Function->new(name => "createAndSendPackage", code => \&_createAndSendPackage);
 $server->add_method($fctInstall);
 $server->add_method($fctPackage);
-
 $server->server_loop();
 
 $_->join() for threads->list();
