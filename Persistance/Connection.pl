@@ -17,7 +17,7 @@ print "Content-type: text/html; charset=iso-8859-1\n\n";
   $dbh->do("DROP TABLE IF EXISTS packageNormal");
   $dbh->do("DROP TABLE IF EXISTS packageMsi");
   $dbh->do("DROP TABLE IF EXISTS packageZip");
-  $dbh->do("CREATE TABLE packageNormal(idpackage INT PRIMARY KEY,nompackage VARCHAR (255), destination VARCHAR (255))");
+  $dbh->do("CREATE TABLE packageNormal(idpackage INT PRIMARY KEY AUTOINCREMENT,nompackage VARCHAR (255), localisation VARCHAR(255) , destination VARCHAR (255), type VARCHAR(255),installed BOOL DEFAULT FALSE)");
   $dbh->do("CREATE TABLE packageMsi(idpackage INT PRIMARY KEY,nompackage VARCHAR (255), destination VARCHAR (255))");
   $dbh->do("CREATE TABLE packageZip(idpackage INT PRIMARY KEY,nompackage VARCHAR (255), destination VARCHAR (255))");
   $dbh->do("INSERT INTO packageNormal VALUES(1,'Package 1','127.0.0.1')");
