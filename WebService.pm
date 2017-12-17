@@ -1,119 +1,96 @@
 package WebService;
 
-=pod
-
-=head1 NAME
-
-WebService - My author was too lazy to write an abstract
-
-=head1 SYNOPSIS
-  WebService::getComputerSoftwares()
-  WebService::getDeployedSoftwares()
-  WebService::getInstalledPackage()
-  WebService::installSoftware(nom)
-  WebService::installStandalone(nom, emplacement, needRegistry, [destination])
-  WebService::removePackage(nom)
-  WebService::updateSoftware(nom)
-
-=head1 DESCRIPTION
-
-The author was too lazy to write a description.
-
-=head1 FUNCTIONS
-
-=cut
-
-use 5.010;
 use strict;
 use warnings;
+use DBI;use RPC::XML::Client;
+use Registry::SoftwareInformationsProvider;
 
-our $VERSION = '0.01';
-
-=pod
-
-=head2 getComputerSoftwares
-
-This method return the list of the install softwares which can be deployed
-
-=cut
-
-sub getComputerSoftwares{
-	die("Not implemented");
+sub getComputerSoftwares {
+	my $sip = new Registry::SoftwareInformationsProvider();
+    my @programList = $sip->getSoftwareList();
+    my @deployedList = getDeployedSoftwares();
+    my @finalList = ();
+        for my $prg (@programList) {
+        my $in = 1;
+        for my $deployed (@deployedList) {
+            $in = 0 if ($prg eq $deployed);
+        }
+        unshift(@finalList, $prg) if ($in == 1);
+    }
+    return @finalList;
 }
-
-=pod
-
-=head2 getDeployedSoftwares
-
-This method return the list of the softwares which have been deployed
-
-=cut
 
 sub getDeployedSoftwares {
-	die("Not implemented");
+	my $dbh = DBI->connect(          
+                "dbi:SQLite:dbname=parcinfo.db", 
+                "",
+                "",
+                { RaiseError => 1}
+          ) or die $DBI::errstr;
+         
+         my $stmt = $dbh->prepare("SELECT nomPackage FROM packageNormal WHERE type=?");
+         $stmt->execute(("software"));
+                 my @prgList = ();
+         while (my @row = $stmt->fetchrow_array) {
+             unshift(@prgList, $row[0]);             }
+         $stmt->finish();
+         $dbh->disconnect();         return @prgList;
 }
-
-=pod
-
-=head2 getInstalledPackage
-
-This method return the list of package which have been deployed on the computer park
-=cut
 
 sub getInstalledPackage {
-		die("Not implemented");
+		my $dbh = DBI->connect(
+                "dbi:SQLite:dbname=parcinfo.db", 
+                "",
+                "",
+                { RaiseError => 1}
+          ) or die $DBI::errstr;
+         
+         my $stmt = $dbh->prepare("SELECT nomPackage FROM packageNormal");
+         $stmt->execute();
+                  
+        my @prgList = ();
+         while (my @row = $stmt->fetchrow_array)
+         {
+             unshift(@prgList, $row[0]);    
+         }
+         
+         $stmt->finish();
+         $dbh->disconnect();
+         return @prgList;
 }
-=pod
-
-=head2 installSoftware
-
-This method install the software indicate by its name
-=cut
 sub installSoftware {
-    die("Not implemented");
+    my @args = @_;
+    die("Usage: $0 (name)") if (@args != 1);
+    my ($name) = @args;
+    my $client = RPC::XML::Client->new("http://localhost:9000");
+    $client->send_request("createAndSendPackage", $name);
+}
+sub installStandalone {
+    my @args = @_;
+
+    die("Usage: $0 (nom, emplacement, needRegistry, [destination])") if(@args < 3 || @args > 4);
+    my ($name, $emplacement, $needRegistry, $destination) = @args;
+    $destination = defined($destination) ? $destination : $emplacement;
+    my $client = RPC::XML::Client->new("http://localhost:9000");
+    $client->send_request("createAndSendStandalone", $name, $emplacement, $needRegistry, $destination);
 }
 
-=pod
-
-=head2 installStandalone
-
-This method create a package and install it using its location, name, destination and generate registry files if needed
-
-=cutsub installStandalone {
-    die("Not implemented");
-}
-=pod
-
-=head2 removePackage
-
-This method remove the package indicate by its name
-
-=cut
 sub removePackage {
-    die("Not implemented");
+    my @args = @_;
+
+    die("Usage: $0 (nom") if (@args != 1);
+    my ($name) = @args;
+    my $client = RPC::XML::Client->new("http://localhost:9000");
+    $client->send_request("uninstallOnNetwork", $name);
 }
-=pod
 
-=head2 installSoftware
-
-This method update the software indicate by its name
-
-=cut
 sub updateSoftware {
-    die("Not implemented");
-}
+    my @args = @_;
 
+    die("Usage: $0 (name)") if (@args != 1);
+    my ($name) = @args;
+    my $client = RPC::XML::Client->new("http://localhost:9000");
+    $client->send_request("createAndSendPackage", $name, 1);
+}
 
 1;
-
-=pod
-
-=head1 SUPPORT
-
-No support is available
-
-=head1 AUTHOR
-
-Copyright 2012 Anonymous.
-
-=cut

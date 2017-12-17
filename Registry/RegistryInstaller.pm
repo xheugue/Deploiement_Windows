@@ -51,7 +51,6 @@ sub applyRegFiles {
     for my $regFile (@regFiles) {
 	my @arguments;
 	my $process;
-	printf("$regFile\n");
 	unshift(@arguments, "reg.exe", "import", "\"$regFile\"");
 	Win32::Process::Create($process, "C:\\Windows\\system32\\reg.exe", join(" ", @arguments), 0, NORMAL_PRIORITY_CLASS, ".");
 	$process->Wait(INFINITE);

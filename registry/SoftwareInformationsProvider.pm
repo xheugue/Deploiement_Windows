@@ -13,10 +13,14 @@ use Switch;
 
 =head1 Dependencies
 
-=over packages
+=over
+
 =item Win32API::Registry
+
 =item Win32::TieRegistry
+
 =item Switch
+
 =back
 
 =head1 Methods and Usage
@@ -63,6 +67,7 @@ sub createFromKey {
     return $this;
 }
 =pod
+
 =begin comment
 
 _listSoftwareInSubkeys permits to list softwares in a subkey
@@ -70,6 +75,7 @@ Parameters: subkeyName, reference to the array to complete
 Return : none
 
 =end comment
+
 =cut
 
 sub _listSoftwareInSubkeys {
@@ -91,10 +97,11 @@ sub _listSoftwareInSubkeys {
         my @valueNames = $subkey->{keys}->ValueNames();
 
         my @filteredAttribute = grep(m/DisplayName/, @valueNames);
+        my @InstallLocation = grep(m/InstallLocation/, @valueNames);
 
-        if (@filteredAttribute == 1) {
+        if (@filteredAttribute == 1 && @InstallLocation == 1) {
             my ($value, $type) = $subkey->{keys}->GetValue("DisplayName");
-            unshift(@program, $value);
+            unshift(@program, $value) if ($value ne '');
         } else {
             next;
         }
@@ -104,12 +111,14 @@ sub _listSoftwareInSubkeys {
 }
 
 =pod
+
 =head2 getSoftwareList()
 
 Provide an array reference to the list of installed software
 
 Parameters: None
 Return : An array which contains the list of installed software
+
 =cut
 
 sub getSoftwareList {
@@ -121,8 +130,8 @@ sub getSoftwareList {
 
     my $subkey = createFromKey Registry::SoftwareInformationsProvider($this->{keys}, "Microsoft\\Windows\\CurrentVersion\\Uninstall");
     my @programs = $subkey->_listSoftwareInSubkeys();
-    my $program = \@programs;
-    return $program;
+    
+    return @programs;
 }
 
 sub getKeyPathByDisplayName {
@@ -180,7 +189,10 @@ sub _searchKeysWithKeyName {
         if (! defined($subkey->{keys})) {
             next;
         }
+=pod
+
 =begin comment
+
         my @valueNames = $subkey->{keys}->ValueNames();
         my $isIn = undef;
 
@@ -190,6 +202,9 @@ sub _searchKeysWithKeyName {
                 $isIn = 1;
             }
         }
+
+=end comment
+
 =cut
         if ($subkey->{keys}->SubKeyNames() != 0) {
             push(@keys, $subkey->_searchKeysWithKeyName($keyName, $displayname));
@@ -199,12 +214,14 @@ sub _searchKeysWithKeyName {
 }
 
 =pod
+
 =head2 getSoftwareRelatedKeys()
 
 Provide an array of key path related to a software
 
 Parameters: displayName, the display name of the software
 Return: A key list related to the software
+
 =cut
 
 sub getSoftwareRelatedKeys {
@@ -228,6 +245,7 @@ sub getSoftwareRelatedKeys {
 }
 
 =pod
+
 =head2 generateRegFileContent
 
 $object->generateRegFileContent(keyList)
