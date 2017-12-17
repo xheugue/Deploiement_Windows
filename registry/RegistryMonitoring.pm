@@ -11,11 +11,11 @@ use Win32;
 
 =head1 NAME
 
-RegistryMonitoring - A class that enable you to look at the differencies of keys
+Registry::RegistryMonitoring - A class that enable you to look at the differencies of keys
 
 =head1 SYNOPSIS
 
-my $object = RegistryMonitoring::new(keyPath);
+my $object = Registry::RegistryMonitoring::new(keyPath);
 
 =head1 DEPENDENCIES
 
@@ -35,7 +35,7 @@ is to create keys before any operation performed on the system.
 
 =head2 new
 
-my $object = RegistryMonitoring::new(keyPath)
+my $object = Registry::RegistryMonitoring::new(keyPath)
 
 The constructor of the monitor for a registry key
 
@@ -49,7 +49,7 @@ sub new {
     my @args = @_;
     
     if (@args != 2) {
-        die("Usage: RegistryMonitoring::new(keyPath)");
+        die("Usage: Registry::RegistryMonitoring::new(keyPath)");
     }
     
     my ($class, $keyPath) = @args;
@@ -132,13 +132,98 @@ sub diffWithSnapshot {
     @arguments = ();
     my $newPath = ($regPath =~ s/\.reg//r);
     
-    unshift(@arguments, "regdiff.exe", $regPath, "$regPath.new", "/diff", "$newPath.update.reg");
+    unshift(@arguments, "regdiff.exe", $regPath, "$regPath.new", "/4","/diff","$newPath.update.reg");
     Win32::Process::Create($process, "C:\\regdiff-4.3\\regdiff.exe", join(" ", @arguments), 0, NORMAL_PRIORITY_CLASS, ".");
     
     $process->Wait(INFINITE);
     unlink("$regPath.new");
     
     return "$newPath.update.reg";
+}
+
+=pod
+
+=head1 FUNCTION
+
+=head2 CleanRegistries
+
+Registry::RegistryMonitoring::CleanRegistries(keyName)
+
+Remove all useless registry key
+
+=cut
+
+sub CleanRegistries {
+    my @args = @_;
+    
+    die("Usage: $0 keyName") if (@args != 1);
+    
+    my ($keyName) = @args;
+    
+     my $registry = new Win32::TieRegistry("$keyName", { Access=>KEY_ALL_ACCESS() });
+     
+     return if (!defined($registry));
+     
+     my @valueNames = $registry->ValueNames();
+     my @subkeyNames = $registry->SubKeyNames();
+     
+     if (@subkeyNames != 0) {
+        for my $subkey (@subkeyNames) {
+            Registry::RegistryMonitoring::CleanRegistries("$keyName\\$subkey");
+        }
+     }
+     @valueNames = $registry->ValueNames();
+     @subkeyNames = $registry->SubKeyNames();
+     
+     if (@subkeyNames == 0 && @valueNames == 0) {
+        $registry->FastDelete(1);
+     }
+}
+
+sub mergeDiff {
+    my @args = @_;
+    
+    die("Usage: $0 regPath1 regPath2") if (@args != 2) ;
+    
+    my ($regPath, $regPath2) = @args;
+    
+    my $process;
+    my @arguments;
+
+    unshift(@arguments, "regdiff.exe", $regPath, "$regPath2", "/4","/merge","$regPath");
+    Win32::Process::Create($process, "C:\\regdiff-4.3\\regdiff.exe", join(" ", @arguments), 0, NORMAL_PRIORITY_CLASS, ".");
+    
+    $process->Wait(INFINITE);
+}
+
+
+=pod
+
+=head2 GenerateInverseRegistry
+
+Registry::RegistryMonitoring::CleanRegistries(regPath, inverseRegPath)
+
+Generate the inverse registry file of regPath at inverseRegPath
+
+=cut
+
+sub GenerateInverseRegistry {
+    my @args = @_;
+    
+    die("Usage: $0 regPath inverseRegPath") if (@args != 2) ;
+    
+    my ($regPath, $inverseRegPath) = @args;
+    
+    open(my $fh, "<", $regPath) || die("Cannot open $regPath");
+    open(my $out, ">", $inverseRegPath) || die("Cannot open $regPath");
+    
+    while (my $line = <$fh>) {
+            $line =~ s/^([^\n]+)=[^\n]+\n$/$1=""\n/g;
+            $line =~ s/^ +[^\n]+\r?\n$//g if ($line =~ m/^ +[^\n]+\n$/g);
+            print $out $line;
+    }
+    close($fh);
+    close($out);
 }
 
 1;
