@@ -4,7 +4,7 @@ use strict;
 use WebService;
 
 
-@deplyedsoftwares=WebService::getDeployedSoftwares();
+my @deplyedsoftwares=WebService::getDeployedSoftwares();
 #Corps de la page
 print "
 <html>

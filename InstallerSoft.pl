@@ -5,9 +5,8 @@ use WebService;
 use CGI;
 
 my $cgi = new CGI;
-my $file = $cgi->param('param');
-my $installsoftware = new WebService($file);
-   $installsoftware->WebService::installSoftware();
+my $nom = $cgi->param('param');
+my $installsoftware = WebService::installSoftware($file);
 print "
 <html>
 <body>";

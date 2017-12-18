@@ -6,8 +6,7 @@ use CGI;
 
 my $cgi = new CGI;
 my $file = $cgi->param('param');
-my $removepackage = new WebService($file);
-   $removepackage->WebService::removePackage();
+WebService::removePackage($file);
    
    print "
    <html>

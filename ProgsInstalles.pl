@@ -4,7 +4,7 @@ use strict;
 use WebService;
 
 
-@installedsoftwares=WebService::getComputerSoftwares();
+my @installedsoftwares=WebService::getComputerSoftwares();
 #Corps de la page
 print "
 <html>
