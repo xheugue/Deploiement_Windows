@@ -6,11 +6,11 @@ use CGI;
 
 my $cgi = new CGI;
 my $nom = $cgi->param('param');
-my $installsoftware = WebService::installSoftware($file);
+WebService::installSoftware($nom);
 print "
 <html>
 <body>";
-print " Software installed "
+print " Software installed ";
 print"
 </body>
 </html>

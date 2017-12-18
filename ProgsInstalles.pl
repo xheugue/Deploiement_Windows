@@ -11,8 +11,6 @@ print "
 <body>";
 #print"$t";
 print"
- <table border=\"1\">";
-print"
 <table border=\"1\">
   <th>Liste des programme installés</th>";
   for(my $i = 0 ; $i < @installedsoftwares ; $i++){
