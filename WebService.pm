@@ -2,7 +2,8 @@ package WebService;
 
 use strict;
 use warnings;
-use DBI;use RPC::XML::Client;
+use DBI;
+use RPC::XML::Client;
 use Registry::SoftwareInformationsProvider;
 
 sub getComputerSoftwares {
@@ -10,7 +11,8 @@ sub getComputerSoftwares {
     my @programList = $sip->getSoftwareList();
     my @deployedList = getDeployedSoftwares();
     my @finalList = ();
-        for my $prg (@programList) {
+    
+    for my $prg (@programList) {
         my $in = 1;
         for my $deployed (@deployedList) {
             $in = 0 if ($prg eq $deployed);
@@ -30,11 +32,14 @@ sub getDeployedSoftwares {
          
          my $stmt = $dbh->prepare("SELECT nomPackage FROM packageNormal WHERE type=?");
          $stmt->execute(("software"));
-                 my @prgList = ();
+         
+        my @prgList = ();
          while (my @row = $stmt->fetchrow_array) {
-             unshift(@prgList, $row[0]);             }
+             unshift(@prgList, $row[0]);    
+         }
          $stmt->finish();
-         $dbh->disconnect();         return @prgList;
+         $dbh->disconnect();
+         return @prgList;
 }
 
 sub getInstalledPackage {
@@ -58,14 +63,16 @@ sub getInstalledPackage {
          $dbh->disconnect();
          return @prgList;
 }
-sub installSoftware {
+
+sub installSoftware {
     my @args = @_;
     die("Usage: $0 (name)") if (@args != 1);
     my ($name) = @args;
     my $client = RPC::XML::Client->new("http://localhost:9000");
     $client->send_request("createAndSendPackage", $name);
 }
-sub installStandalone {
+
+sub installStandalone {
     my @args = @_;
 
     die("Usage: $0 (nom, emplacement, needRegistry, [destination])") if(@args < 3 || @args > 4);
