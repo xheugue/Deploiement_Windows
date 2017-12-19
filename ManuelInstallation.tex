@@ -1,0 +1,55 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fourier}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Mohamed Boumati, Nouredine Hamri, Xavier Heugue, Hichem Touahria}
+\title{Manuel d'installation}
+
+\begin{document}
+\maketitle
+\chapter{}
+\section{Installation des prérequis et configuration}
+
+\subsection{ActivePerl}
+
+Pour le bon fonctionnement de notre programme, nous allons installer activeperl, optez pour l'installation complète.
+
+\subsubsection{Installation des modules}
+
+Pour que notre programme fonctionne, il nous faudra les modules suivants :
+\begin{enumerate}
+\item RPC::XML
+\item Net::FTP::Recursive
+\item Switch
+\item Win32::TieRegistry
+\end{enumerate}
+
+\subsection{XAMPP}
+
+Pour le fonctionnement de notre logiciel, il vous faudra installer xampp, pendant l'installation, veillez bien à ce que l'extension PERL soit activé lors de l'installation pour le fonctionnement des CGIs, et à installer le module Filezilla, présent dans cette distribution.
+
+\subsection{Filezilla}
+
+Le logiciel n'étant qu'au stade de prototype, l'aspect sécurité n'a pas encore été révisé. Il faudra donc mettre en place un compte utilisateur :
+
+À l'aide du panneau de contrôle Xampp (executé avec les droits administrateurs), lancez le serveur filezilla. Ensuite, cliquer sur le bouton \og admin \fg.
+
+Dans la fenêtre qui s'est ouverte, cliquer sur \og edit \fg{} puis sur Users. Cliquer sur le bouton add . Et mettez le nom d'utilisateur \og admin \fg{} . Cocher la case password et mettez le mot de passe \og password \fg{}.
+
+Cliquez sur \og Shared folders \fg{} à la gauche de votre écran, puis sur le bouton \og add \fg{} au-dessous de l'encadré \og Shared Folders \fg{}. Choisissez le répertoire \og C: \fg{}
+
+\subsection{Autre prérequis}
+
+Framework .NET 4.5 
+
+\section{installation du programme}
+
+Extraire le contenu de l'archive  \og{} software\textunderscore{}management.zip \fg{} 
+
+\end{document}
