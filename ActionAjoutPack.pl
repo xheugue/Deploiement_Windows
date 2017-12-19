@@ -10,7 +10,7 @@ my $file = $cgi->param('FicherCharge');
 my $folder = $cgi->param('folder');
 my $nomPackage = $cgi->param('nomPackage');
 
-if (($file eq '' && $folder eq '') || ($file ne '' && $folder ne '') {
+if (($file eq '' && $folder eq '') || ($file ne '' && $folder ne '')) {
     print "Content-Type: text/html\n\n";
     print "Veuillez définir, soit le fichier, soit le dossier.";
     
