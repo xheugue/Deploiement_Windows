@@ -16,6 +16,7 @@ if (($file eq '' && $folder eq '') || ($file ne '' && $folder ne '')) {
     
     }
 
+my $registry = ($cgi->param("registry") == 0 ? 0 : 1);
     my $emplacement = (defined($folder) ? $folder : $file);
     WebService::installStandalone($nomPackage, $emplacement, $registry);
 
