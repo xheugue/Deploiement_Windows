@@ -17,9 +17,7 @@ if (($file eq '' && $folder eq '') || ($file ne '' && $folder ne '')) {
     }
 
     my $emplacement = (defined($folder) ? $folder : $file);
-    my $registry = (! $cgi->param("registry") ? 0 : 1);
-my $installsoftware = new WebService($file);
-    $installsoftware->WebService::installStandalone($nomPackage, $emplacement, $registry);
+    WebService::installStandalone($nomPackage, $emplacement, $registry);
 
 print "Content-Type: text/html\n\n";
 
